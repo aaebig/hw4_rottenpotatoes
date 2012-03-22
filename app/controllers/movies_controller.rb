@@ -1,4 +1,12 @@
 class MoviesController < ApplicationController
+  def find_same_director
+    begin
+      @movies = Movie.find_same_director(params[:id])
+    rescue Movie::MissingDirector => e
+      flash[:warning] = e.message
+      redirect_to movies_path
+    end
+  end
 
   def show
     id = params[:id] # retrieve movie ID from URI route
