@@ -8,7 +8,7 @@ describe Movie do
     end
     it 'should search for similar movies' do
       @fake_movie.stub(:director).and_return('George Lucas')
-      Movie.should_receive(:find_by_director).with('George Lucas')
+      Movie.should_receive(:find_all_by_director).with('George Lucas')
       Movie.find_same_director('1')
     end
     it 'should raise an error if there is no director' do

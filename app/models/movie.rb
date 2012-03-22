@@ -4,8 +4,8 @@ class Movie < ActiveRecord::Base
 
   def self.find_same_director(id)
     director = self.find(id).director
-    if director.length > 0
-      self.find_by_director(director)
+    if director && director.length > 0
+      self.find_all_by_director(director)
     else
       raise Movie::MissingDirector, %Q['#{self.find(id).title}' has no director info]
     end
